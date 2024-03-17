@@ -31,6 +31,7 @@ bool is_same_element(int** matrix, int heigth, int length) {
 				{
 					if (matrix[i][j] == matrix[k][m]) {
 						same = true;
+						break;
 					}
 				}
 			}
@@ -38,4 +39,30 @@ bool is_same_element(int** matrix, int heigth, int length) {
 	}
 
 	return same;
+}
+
+int find_row_sum(int* matrix, int length) {
+	int sum = 0;
+	
+	for (int i = 0; i < length; i++)
+	{
+		sum += *(matrix + i);
+	}
+
+	return sum;
+}
+
+int find_max_sum_row(int** matrix, int length, int heigth){
+	int max_index = 0;
+
+	for (int i = 0; i < heigth; i++)
+	{
+		int sum = find_row_sum(*(matrix + i), length);
+
+		if (sum > find_row_sum(*(matrix + max_index), length)) {
+			max_index = i;
+		}
+	}
+
+	return max_index;
 }

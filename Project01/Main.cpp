@@ -6,12 +6,13 @@ void random_init(int** matrix, int heigth, int length, int min, int max);
 
 void multiplication_table_init(int** matrix, int heigth, int length);
 bool is_same_element(int** matrix, int heigth, int length);
+int find_max_sum_row(int** matrix, int length, int heigth);
 
 int main() {
 	srand(time(NULL));
 
-	int length = 100;
-	int heigth = 100;
+	int length = 5;
+	int heigth = 5;
 
 	int** matrix = new int*[heigth];
 
@@ -20,10 +21,17 @@ int main() {
 		*(matrix + i) = new int[length];
 	}
 	
-	random_init(matrix, heigth, length, 0, 1000);
+	random_init(matrix, heigth, length, 0, 9);
 
 	cout << convert_to_string(matrix, length, heigth);
-	cout << (is_same_element(matrix, heigth, length) ? "There are same elemets" : "there is no same elements");
+	cout << "The index of row that has max sum is: " << find_max_sum_row(matrix, heigth, length);
+
+	for (int i = 0; i < length; i++)
+	{
+		delete[]*(matrix + i);
+	}
+
+	delete[] matrix;
 
 	return 0;
 }
